@@ -23,5 +23,6 @@
   }
 
   body.bigbody{
-    object-fit: fill;
+    position: relative;
+    background-size: cover;
   }
