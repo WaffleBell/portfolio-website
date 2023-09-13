@@ -1,55 +1,80 @@
-.topnav {
-    background-color: rgb(37,37,37, .3);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-image: url('images/DSC_0761.JPG');
+    background-size: cover;
+  }
+  
+  .topnav {
+    background-color: rgba(37, 37, 37, 0.3);
     overflow: hidden;
-    border-radius: 5px;
   }
   
   .topnav a {
     float: left;
-    color: #ffffff;
+    color: #fff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    font-family: 'Inter', sans-serif;;
   }
   
   .topnav a:hover {
     background-color: #1a1a1a;
-    color: rgb(255, 255, 255);
     transition: 0.3s;
   }
-
+  
   .topnav a.active {
     color: white;
   }
-
-  body.bigbody{
+  
+  .bigbody {
     position: relative;
     background-size: cover;
+    background-repeat: no-repeat;
   }
-
-  div.mainbody{
-    background-color: #00b7ff00;
+  
+  div.mainbody {
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0);
     border-radius: 10px;
     width: 200px;
     height: 200px;
-    margin: 500px;
+    margin: 500px auto;
+    text-align: center;
   }
-
-  h2.titlediv{
-    font-family: 'Inter', sans-serif;;
+  
+  h2.titlediv {
+    font-family: 'Inter', sans-serif;
   }
-
+  
   .profile {
     height: 48px;
     width: 48px;
     padding: 4px !important;
-    box-sizing: border-box
+    border-radius: 50%;
   }
   
   img {
-    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
     border-radius: 50%;
+  }
+  
+  .full-page-background {
+    background-image: url('images/DSC_0761.JPG');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
   }
