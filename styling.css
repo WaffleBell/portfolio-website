@@ -1,28 +1,55 @@
 .topnav {
-    background-color: #252525;
+    background-color: rgb(37,37,37, .3);
     overflow: hidden;
+    border-radius: 5px;
   }
   
   .topnav a {
     float: left;
-    color: #f2f2f2;
+    color: #ffffff;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    font-family: 'Inter', sans-serif;;
   }
   
   .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #1a1a1a;
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
   }
 
   .topnav a.active {
-    background-color: #04AA6D;
     color: white;
   }
 
   body.bigbody{
     position: relative;
     background-size: cover;
+  }
+
+  div.mainbody{
+    background-color: #00b7ff00;
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    margin: 500px;
+  }
+
+  h2.titlediv{
+    font-family: 'Inter', sans-serif;;
+  }
+
+  .profile {
+    height: 48px;
+    width: 48px;
+    padding: 4px !important;
+    box-sizing: border-box
+  }
+  
+  img {
+    width: 100%;
+    border-radius: 50%;
   }
