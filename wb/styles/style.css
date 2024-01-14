@@ -3,8 +3,9 @@
 :root {
     --bg: #020202;
     --default-text: #ffffff;
-    --default-text-dark: #000;
+    --default-text-dark: hsl(0, 0%, 0%);
     --highlight: #fff;
+    --border-light: #363636;
 }
 
 body {
@@ -12,12 +13,6 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
 }
 
 .header {
@@ -36,7 +31,7 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: solid thin #363636;
+    border-top: solid thin var(--border-light);
     padding: 25px;
 }
 
@@ -54,12 +49,17 @@ body {
 
 .contact-link {
     color: var(--default-text);
+    transition: all 0.2s;
     text-decoration: none;
-    border-radius: 8px;
 }
 
 .contact-link:hover {
     background-color: var(--highlight);
     color: var(--default-text-dark);
     padding: 100;
+}
+
+.nostyle {
+    text-decoration: none;
+    color: var(--default-text;
 }
