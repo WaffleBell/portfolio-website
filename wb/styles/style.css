@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;500&display=swap');
+
+:root {
+    --bg: #020202;
+    --default-text: #ffffff;
+    --default-text-dark: #000;
+    --highlight: #fff;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.contact-email {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+}
+
+.contact-link {
+    color: var(--default-text);
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    background-color: var(--highlight);
+    color: var(--default-text-dark);
+    padding: 100;
+}
