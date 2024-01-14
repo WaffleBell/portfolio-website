@@ -2,7 +2,7 @@
     "name": "WaffleBell's Portfolio",
     "short_name": "WaffleBell",
     "icons": [{
-        "src": "google-touch-icon.png",
+        "src": "google.png",
         "sizes": "512x512"
     }],
     "background_color": "#ffffff",
