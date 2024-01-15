@@ -20,7 +20,7 @@
 .copyright,
 .contact-email {
     color: white;
-    font-size: 16px;
+    font-size: 25px;
     transition: all 0.3s;
 }
 
@@ -37,7 +37,7 @@
 
     .copyright,
     .contact-email {
-        font-size: 18px;
+        font-size: 23px;
     }
 }
 
