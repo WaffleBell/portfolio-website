@@ -556,8 +556,24 @@ video {
   margin: 0px;
 }
 
+.flex {
+  display: flex;
+}
+
 .w-full {
   width: 100%;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.rounded {
+  border-radius: 0.25rem;
 }
 
 .border-t {
@@ -578,58 +594,44 @@ video {
   padding: 0px;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
 .font-sans {
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.bottom-bar {
-  background-color: #000;
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
-.bottom-bar.fixed {
-  position: fixed;
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.bottom-bar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
-.copyright,
-.contact-email {
-  color: white;
-  font-size: 25px;
-  transition: all 0.3s;
+.duration-300 {
+  transition-duration: 300ms;
 }
 
-.contact-email:hover {
-  background-color: white;
-  color: black;
-  padding: 100;
+.hover\:bg-white:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-@media (min-width: 768px) {
-  .bottom-bar-container {
-    flex-direction: row;
-  }
-
-  .copyright,
-    .contact-email {
-    font-size: 23px;
-  }
-}
-
-@media (max-width: 767px) {
-  .bottom-bar-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .copyright,
-    .contact-email {
-    margin-bottom: 2px;
-  }
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
