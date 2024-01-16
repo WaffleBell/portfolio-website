@@ -1,5 +1,12 @@
 {
+  "name": "portfolio-website",
+  "version": "1.0.0",
   "devDependencies": {
     "tailwindcss": "^3.4.1"
-  }
+  },
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./wb/styles/input.css -o ./wb/styles/output.css --watch"
+  },
+  "author": "WaffleBell",
+  "description": "portfolio-website is built to showcase samples of my photography and display my past and present projects."
 }
