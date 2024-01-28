@@ -10,18 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = 0;
     const imageElement = document.getElementById("galleryImage");
 
-    function fadeIn() {
-        imageElement.style.opacity = "0";
-        setTimeout(() => {
-            imageElement.src = images[currentIndex];
-            imageElement.style.opacity = "1";
-        }, 50);
-    }
-
-    function fadeOut() {
-        imageElement.style.opacity = "0";
-    }
-
     function changeImage() {
         fadeOut();
         setTimeout(() => {
@@ -30,5 +18,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500);
     }
 
+    function fadeOut() {
+        imageElement.style.opacity = "0";
+        imageElement.addEventListener("transitionend", function () {
+            imageElement.src = images[currentIndex];
+        }, { once: true });
+    }
+
+    function fadeIn() {
+        setTimeout(() => {
+            imageElement.style.opacity = "1";
+        }, 50);
+    }
+
+    changeImage();
     setInterval(changeImage, 3500);
 });
