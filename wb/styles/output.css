@@ -784,6 +784,10 @@ video {
   transition: opacity 0.5s ease-in-out;
 }
 
+.document-loaded {
+  opacity: 1 !important;
+}
+
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));

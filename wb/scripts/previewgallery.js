@@ -7,38 +7,36 @@ document.addEventListener("DOMContentLoaded", function () {
         "/wb/home/images/5.webp",
     ];
 
-    const intervalId = setInterval(changeImage, 3500);
-    window.addEventListener("unload", function () {
-        clearInterval(intervalId);
-    });
-
     let currentIndex = 0;
     const imageElement = document.getElementById("galleryImage");
 
     function changeImage() {
-        fadeOut();
+        fadeOut(); // Start by fading out the current image
         setTimeout(() => {
-            fadeIn();
             currentIndex = (currentIndex + 1) % images.length;
-        }, 500);
+            imageElement.src = images[currentIndex];
+            fadeIn(); // After changing the image, fade it in
+        }, 500); // Adjust this delay if needed
     }
-    
+
     function fadeOut() {
         imageElement.style.opacity = "0";
-        imageElement.addEventListener("transitionend", function () {
-            imageElement.src = images[currentIndex];
-            imageElement.addEventListener("load", function () {
-                fadeIn();
-            }, { once: true });
-        }, { once: true });
     }
 
     function fadeIn() {
         setTimeout(() => {
             imageElement.style.opacity = "1";
-        }, 50);
+        }, 50); // A small delay to ensure the opacity change takes effect
     }
 
+    // Initial image change
     changeImage();
-    setInterval(changeImage, 3500);
+
+    // Change image at regular intervals
+    const intervalId = setInterval(changeImage, 3500);
+
+    // Clear interval on page unload
+    window.addEventListener("unload", function () {
+        clearInterval(intervalId);
+    });
 });
