@@ -10,13 +10,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = 0;
     const imageElement = document.getElementById("galleryImage");
 
+    const imageObjects = images.map((src) => {
+        const img = new Image();
+        img.src = src;
+        return img;
+    });
+
     function changeImage() {
-        fadeOut(); // Start by fading out the current image
+        fadeOut();
         setTimeout(() => {
             currentIndex = (currentIndex + 1) % images.length;
             imageElement.src = images[currentIndex];
-            fadeIn(); // After changing the image, fade it in
-        }, 500); // Adjust this delay if needed
+            fadeIn();
+        }, 500);
     }
 
     function fadeOut() {
@@ -26,16 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function fadeIn() {
         setTimeout(() => {
             imageElement.style.opacity = "1";
-        }, 50); // A small delay to ensure the opacity change takes effect
+        }, 50);
     }
 
-    // Initial image change
     changeImage();
-
-    // Change image at regular intervals
     const intervalId = setInterval(changeImage, 3500);
 
-    // Clear interval on page unload
     window.addEventListener("unload", function () {
         clearInterval(intervalId);
     });
