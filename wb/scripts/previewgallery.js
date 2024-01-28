@@ -11,10 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageElement = document.getElementById("galleryImage");
 
     function fadeIn() {
+        imageElement.style.opacity = "0";
         setTimeout(() => {
             imageElement.src = images[currentIndex];
             imageElement.style.opacity = "1";
-        }, 500);
+        }, 50);
     }
 
     function fadeOut() {
