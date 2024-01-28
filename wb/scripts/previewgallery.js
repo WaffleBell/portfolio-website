@@ -11,8 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageElement = document.getElementById("galleryImage");
 
     function fadeIn() {
-        imageElement.src = images[currentIndex];
-        imageElement.style.opacity = "1";
+        setTimeout(() => {
+            imageElement.src = images[currentIndex];
+            imageElement.style.opacity = "1";
+        }, 500);
     }
 
     function fadeOut() {
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             fadeIn();
             currentIndex = (currentIndex + 1) % images.length;
-        }, 1000);
+        }, 500);
     }
 
     setInterval(changeImage, 3500);
