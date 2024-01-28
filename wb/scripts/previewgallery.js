@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             fadeIn();
             currentIndex = (currentIndex + 1) % images.length;
-        }, 500);
+        }, 1000);
     }
 
     function fadeOut() {
