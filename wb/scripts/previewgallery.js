@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
     const images = [
-        "/wb/home/images/1.JPG",
-        "/wb/home/images/2.JPG",
-        "/wb/home/images/3.JPG",
-        "/wb/home/images/4.JPG",
-        "/wb/home/images/5.JPG",
+        "/wb/home/images/1.webp",
+        "/wb/home/images/2.webp",
+        "/wb/home/images/3.webp",
+        "/wb/home/images/4.webp",
+        "/wb/home/images/5.webp",
     ];
+
+    const intervalId = setInterval(changeImage, 3500);
+    window.addEventListener("unload", function () {
+        clearInterval(intervalId);
+    });
 
     let currentIndex = 0;
     const imageElement = document.getElementById("galleryImage");
@@ -15,13 +20,16 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             fadeIn();
             currentIndex = (currentIndex + 1) % images.length;
-        }, 1000);
+        }, 500);
     }
-
+    
     function fadeOut() {
         imageElement.style.opacity = "0";
         imageElement.addEventListener("transitionend", function () {
             imageElement.src = images[currentIndex];
+            imageElement.addEventListener("load", function () {
+                fadeIn();
+            }, { once: true });
         }, { once: true });
     }
 
