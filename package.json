@@ -8,5 +8,7 @@
     "build:css": "npx tailwindcss -i ./wb/styles/input.css -o ./wb/styles/output.css --watch"
   },
   "author": "WaffleBell",
-  "description": "portfolio-website is built to showcase samples of my photography and display my past and present projects."
+  "description": "portfolio-website is built to showcase samples of my photography and display my past and present projects.",
+  "dependencies": {
+  }
 }
