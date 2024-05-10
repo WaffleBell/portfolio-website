@@ -2,7 +2,13 @@
 module.exports = {
   content: ["./*.html"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        thin: 'Helvetica Neue Thin',
+        display: 'Helvetica Neue Light',
+        bold: 'Helvetica Neue Medium',
+      }
+    },
   },
   plugins: [],
 }

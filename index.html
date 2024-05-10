@@ -24,54 +24,39 @@
     <link rel="manifest" href="/wb/web/manifest.json">
     <link rel="stylesheet" href="/wb/styles/output.css">
 </head>
-<body class="bg-black font-sans m-0 p-0 flex flex-col items-start justify-center min-h-screen">
-    <div class="flex flex-col md:flex-row justify-center items-center">
-        <div class="w-full lg:w-1/2 p-16 md:mt-0">
-            <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                <span id="titleSegment1" class="fade-in">Hey,</span>
-                <span id="titleSegment2" class="fade-in" style="animation-delay: 1s;"> I'm WaffleBell!</span>
-            </h1>
-            <p class="text-gray-400 text-base md:text-lg lg:text-xl fade-in" id="description" style="animation-delay: 1.5s;">
-                My name is Prab, also known as WaffleBell. I do photography and a occasionaly a bit of videography, you can view my videos at <a href="https://www.youtube.com/@WaffleTM420">YouTube</a>. My photography will be posted here too. Feel free to contact me via email or Discord.
-            </p>
-            <div class="flex flex-col mt-4 sm:flex-row">
-                <button class="h-10 px-5 text-gray-400 -700 transition-colors duration-200 border border-gray-500 rounded-lg focus:shadow-outline hover:bg-white hover:text-black py-2 mb-2 mr-4 md:mb-0 md:mr-4 fade-in" style="animation-delay: 3s;">
-                    <a href="https://www.youtube.com/@WaffleTM420">Subscribe</a>
-                </button>
-                <button class="h-10 px-5 text-gray-400 -700 transition-colors duration-200 border border-gray-500 rounded-lg focus:shadow-outline hover:bg-white hover:text-black py-2 mb-2 mr-4 md:mb-0 md:mr-4 fade-in" style="animation-delay: 3s;">
-                    <a href="https://discord.gg/qS9fsQ6hyP">Join our Discord</a>
-                </button>
-                <button class="inline-block lg:hidden h-10 px-5 -700 transition-colors duration-200 rounded-lg focus:shadow-outline bg-white text-black py-2 mb-2 mr-4 md:mb-0 md:mr-4 fade-in items-center" style="animation-delay: 3s;">
-                    <a href="gallery.html" class="flex justify-center items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                        </svg>
-                        <span>Visit the Gallery</span>
-                    </a>
-                </button>
-            </div>        
+<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen">
+    <nav class="navbar fixed top-0 w-full flex items-center justify-between p-5"> 
+        <div class="text-2xl font-thin">wafflebell</div>
+        <div class="flex space-x-8">
+            <a href="/gallery.html" class="hover:underline font-thin">gallery</a>
+            <a href="#" class="hover:underline font-thin">about me</a>
+            <a href="#" class="hover:underline font-thin">contact</a>
         </div>
-        <div class="hidden lg:flex lg:w-1/2 p-16 md:mt-0 items-center justify-center fade-in" style="animation-delay: 3s;">
-            <div class="max-w-128 h-128 bg-black relative overflow-hidden">
-                <img id="galleryImage" alt="Gallery Image" class="rounded-md w-128 h-128 fade" />
+    </nav>
+    <div class="flex w-full h-full">
+        <div class="panel-left p-16">
+            <div class="center-content">
+                <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                    <span id="titleSegment1" class="fade-in font-thin">Hey,</span><br>
+                    <span id="titleSegment2" class="fade-in font-display" style="animation-delay: 1s;"> I'm WaffleBell!</span>
+                </h1>
+                <p class="text-gray-400 text-base md:text-lg lg:text-xl fade-in font-thin" id="description" style="animation-delay: 1.5s;">
+                    My name is Prab, also known as WaffleBell. I do photography and a occasionaly a bit of videography, you can view my videos at <a href="https://www.youtube.com/@WaffleTM420">YouTube</a>. My photography will be posted here too. Feel free to contact me via email or Discord.
+                </p>
+                <div class="flex flex-col mt-4 sm:flex-row">
+                    <button class="h-10 px-5 text-gray-400 -700 transition-colors duration-200 border border-gray-500 rounded-lg focus:shadow-outline hover:bg-white hover:text-black py-2 mb-2 mr-4 md:mb-0 md:mr-4 fade-in font-thin" style="animation-delay: 3s;">
+                        <a href="https://www.youtube.com/@WaffleTM420">Subscribe</a>
+                    </button>
+                    <button class="h-10 px-5 text-gray-400 -700 transition-colors duration-200 border border-gray-500 rounded-lg focus:shadow-outline hover:bg-white hover:text-black py-2 mb-2 mr-4 md:mb-0 md:mr-4 fade-in font-thin" style="animation-delay: 3s;">
+                        <a href="https://discord.gg/qS9fsQ6hyP">Join our Discord</a>
+                    </button>
+                </div>        
             </div>
+        </div>
+        <div class="panel-right">
+            <img id="galleryImage" alt="Gallery Image" class="w-full h-full object-cover fade">
         </div>
         <script src="/wb/scripts/previewgallery.js"></script>
-    </div>
-    <div class="bottom-bar fixed bottom-0 w-full border-t border-gray-800 bg-black fade-in" id="bottomBar" style="animation-delay: 3s;">
-        <div class="bottom-bar-container flex justify-between items-center p-4">
-            <div class="copyright text-white text-lg transition-all duration-300">
-                &copy; 2024,
-                <a class="contact-link" href="https://github.com/WaffleBell">
-                    WaffleBell
-                </a>
-            </div>
-            <div class="contact-email text-white text-lg transition-all duration-300 hover:bg-white hover:text-black p-1 rounded-md cursor-pointer">
-                <a class="contact-link" href="mailto:prabholo@icloud.com">
-                    prabholo@icloud.com
-                </a>
-            </div>
-        </div>
     </div>
     <script src="/wb/scripts/fade.js"></script>
 </body>

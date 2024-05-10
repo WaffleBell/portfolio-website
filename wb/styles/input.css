@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Helvetica Neue Thin';
+    src: url(/wb/fonts/thin.otf);
+    weight: light;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue Light';
+    src: url(/wb/fonts/light.otf);
+    weight: light;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue Medium';
+    src: url(/wb/fonts/medium.otf);
+    weight: medium;
+}
+
 .fade-in {
     opacity: 0;
     animation: fadeIn ease-in-out 1s forwards;
@@ -23,4 +41,29 @@
 
 .document-loaded {
     opacity: 1 !important;
+}
+
+body{
+    font-family: ;
+}
+
+.navbar {
+    z-index: 1;
+    -webkit-backdrop-filter: saturate(100%) blur(150px);
+    backdrop-filter: saturate(100%) blur(150px);
+    background-color: rgba(0, 0, 0, 0.076);
+    border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
+}
+.panel-left {
+    height: 100vh;
+}
+.panel-right {
+    height: 100vh;
+    border-left: 0.3px solid rgba(255, 255, 255, 0.364);
+}
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
