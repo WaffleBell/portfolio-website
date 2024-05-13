@@ -69,15 +69,19 @@
             display: block;
             transform: translateY(-50%);
         }
+
+        .sidebar-button {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="flex flex-col h-screen">
     <nav class="navbar fixed top-0 w-full flex items-center justify-between p-5 text-white bg-gray-800">
         <div class="text-2xl font-thin">wafflebell</div>
         <div class="flex space-x-8">
-            <a href="/gallery.html" class="hover:underline font-thin">gallery</a>
-            <a href="#" class="hover:underline font-thin">about me</a>
-            <a href="#" class="hover:underline font-thin">contact</a>
+            <a href="/gallery.html" class="hover:underline font-thin sidebar-button">gallery</a>
+            <a href="#" class="hover:underline font-thin sidebar-button">about me</a>
+            <a href="#" class="hover:underline font-thin sidebar-button">contact</a>
         </div>
     </nav>
     <div class="flex flex-1">
@@ -98,25 +102,25 @@
                 <br>
                 <ul>
                     <div class="location-container border-bottom mb-1">
-                        <li class="mx-3 location" data-location="Italy">Italy</li>
+                        <li class="mx-3 location sidebar-button" data-location="Italy">Italy</li>
                     </div>
                     <div class="location-container border-bottom mb-1">
-                        <li class="mx-3 location" data-location="Cyprus">Cyprus</li>
+                        <li class="mx-3 location sidebar-button" data-location="Cyprus">Cyprus</li>
                     </div>
                     <div class="location-container border-bottom border-white mb-1">
-                        <li class="mx-3 location" data-location="New York">New York</li>
+                        <li class="mx-3 location sidebar-button" data-location="New York">New York</li>
                     </div>
                     <div class="location-container border-bottom border-white mb-1">
-                        <li class="mx-3 location" data-location="South Plank">South Plank</li>
+                        <li class="mx-3 location sidebar-button" data-location="South Plank">South Plank</li>
                     </div>
                     <div class="location-container border-bottom border-white mb-1">
-                        <li class="mx-3 location" data-location="Birmingham">Birmingham</li>
+                        <li class="mx-3 location sidebar-button" data-location="Birmingham">Birmingham</li>
                     </div>
                     <div class="location-container border-bottom border-white mb-1">
-                        <li class="mx-3 location" data-location="Peak District">Peak District</li>
+                        <li class="mx-3 location sidebar-button" data-location="Peak District">Peak District</li>
                     </div>
                     <div class="location-container border-bottom border-white mb-1">
-                        <li class="mx-3 location" data-location="Miscellaneous">Miscellaneous</li>
+                        <li class="mx-3 location sidebar-button" data-location="Miscellaneous">Miscellaneous</li>
                     </div>
                 </ul>
             </div>
@@ -128,6 +132,7 @@
     <script>
         let currentLocationImages = [];
         let currentIndex = 0;
+        let isFirstLoad = true;
         const galleryImage = document.createElement('img');
         galleryImage.classList.add('gallery-image');
         const panelLeftGallery = document.querySelector('.panel-left-gallery');
@@ -137,12 +142,10 @@
         locationContainers.forEach(location => {
             location.addEventListener('click', () => {
                 const locationName = location.getAttribute('data-location');
-                // Call function to load and display images for the selected location
                 loadImages(locationName);
             });
         });
 
-        // Function to load and display images for a location
         async function loadImages(locationName) {
             const locationFolder = `/wb/gallery/${locationName}/`;
             try {
@@ -153,24 +156,35 @@
                 const imageLinks = htmlDoc.querySelectorAll('a[href$=".webp"]');
                 currentLocationImages = Array.from(imageLinks).map(link => link.href);
                 currentIndex = 0;
-                showImage(currentLocationImages[currentIndex]);
+                if (isFirstLoad) {
+                    showImage(currentLocationImages[currentIndex]);
+                    isFirstLoad = false;
+                } else {
+                    galleryImage.src = currentLocationImages[currentIndex];
+                }
             } catch (error) {
                 console.error('Error loading images:', error);
             }
         }
 
-        // Function to display an image
         function showImage(imageSrc) {
             galleryImage.src = imageSrc;
-            galleryImage.classList.remove('fade-in');
-            setTimeout(() => {
-                galleryImage.classList.add('fade-in');
-            }, 100);
+            galleryImage.classList.add('fade-in');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentLocationImages.length === 0) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+            }
         }
 
-        // Add click event listeners to navigation controls
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
         prevBtn.addEventListener('click', () => {
             navigateGallery(-1);
         });
@@ -178,7 +192,6 @@
             navigateGallery(1);
         });
 
-        // Function to navigate through the gallery
         function navigateGallery(direction) {
             currentIndex += direction;
             if (currentIndex < 0) {
@@ -186,8 +199,27 @@
             } else if (currentIndex >= currentLocationImages.length) {
                 currentIndex = 0;
             }
-            showImage(currentLocationImages[currentIndex]);
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentLocationImages.length === 0) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+            }
+            galleryImage.src = currentLocationImages[currentIndex];
         }
+
+        const sidebarButtons = document.querySelectorAll('.sidebar-button');
+        sidebarButtons.forEach(button => {
+            button.addEventListener('mouseover', () => {
+                document.body.style.cursor = 'pointer';
+            });
+            button.addEventListener('mouseout', () => {
+                document.body.style.cursor = 'default';
+            });
+        });
     </script>
 </body>
 </html>
