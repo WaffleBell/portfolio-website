@@ -67,3 +67,40 @@ body{
     justify-content: center;
     height: 100%;
 }
+.border-bottom{
+    border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
+}
+.panel-left-gallery {
+    border-right: 0.3px solid rgba(255, 255, 255, 0.364);
+    flex: 3;
+}
+.panel-right-gallery {
+    flex: 1;
+}
+
+.gallery-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    z-index: 1; /* Ensure the buttons are above the image */
+}
+
+.gallery-controls.left {
+    left: 0;
+}
+
+.gallery-controls.right {
+    right: 0;
+}
+
+.gallery-controls img {
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    display: block;
+    transform: translateY(-50%);
+}
