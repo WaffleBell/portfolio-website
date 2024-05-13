@@ -50,21 +50,22 @@
             transform: translateY(-50%);
             width: 20px;
             height: 40px;
-            background-color: rgba(0, 0, 0, 0.5);
             cursor: pointer;
         }
 
         .gallery-controls.left {
             left: 0;
+            background-color: transparent;
         }
 
         .gallery-controls.right {
             right: 0;
+            background-color: transparent;
         }
 
         .gallery-controls img {
-            width: 10px;
-            height: 10px;
+            width: 15px;
+            height: 15px;
             margin: auto;
             display: block;
             transform: translateY(-50%);
@@ -72,6 +73,25 @@
 
         .sidebar-button {
             cursor: pointer;
+        }
+
+        .folder-submenu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .folder-submenu.active {
+            display: block;
+        }
+
+        .folder-submenu .sidebar-button {
+            margin-bottom: 5px;
+        }
+
+        .arrow-icon {
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -91,10 +111,10 @@
                 <p class="text-xl text-gray-500 font-thin">Click on an entry to begin</p>
             </div>
             <div class="gallery-controls left" id="prevBtn">
-                <img src="left-arrow.svg" alt="Previous">
+                <img src="/wb/gallery/symbols/left-arrow.svg" alt="Previous">
             </div>
             <div class="gallery-controls right" id="nextBtn">
-                <img src="right-arrow.svg" alt="Next">
+                <img src="/wb/gallery/symbols/right-arrow.svg" alt="Next">
             </div>
         </div>
         <div class="panel-right-gallery flex flex-col justify-between bg-black text-white font-thin">
@@ -119,12 +139,26 @@
                     <div class="location-container border-bottom border-white mb-1">
                         <li class="mx-3 location sidebar-button" data-location="Peak District">Peak District</li>
                     </div>
-                    <div class="location-container border-bottom border-white mb-1">
-                        <li class="mx-3 location sidebar-button" data-location="Miscellaneous">Miscellaneous</li>
+                    <div class="location-container border-bottom border-white mb-0.5">
+                        <li class="mx-3 sidebar-button">
+                            <div class="flex items-center">
+                                <img src="/wb/gallery/symbols/right-arrow-point.svg" alt="Expand" class="arrow-icon">
+                                Miscellaneous
+                            </div>
+                        </li>
+                        <ul class="folder-submenu" id="miscSubmenu">
+                            <div class="location-container border-bottom mb-1">
+                                <li class="mx-3 location sidebar-button text-sm" data-location="Miscellaneous/Worcester Mountain">Worcester Mountain</li>
+                            </div>
+                            <div class="location-container mb-0.5">
+                                <li class="mx-3 location sidebar-button" data-location="Miscellaneous/BirdsGardens">Birds & Gardens</li>
+                            </div>
+                        </ul>
                     </div>
                 </ul>
             </div>
             <div class="mt-4 mb-4 mx-3">
+                <p class="text-sm text-gray-500 font-thin mb-1">All images are copyrighted, contact <a href="mailto:prabholo@icloud.com">prabholo@icloud.com</a> for licensing.</p>
                 <p>Welcome to the gallery! This page contains all of my photography work, ranging from the different locations I've visited. To navigate and browse through the gallery, use the locations listed above.</p>
             </div>
         </div>
@@ -218,6 +252,18 @@
             });
             button.addEventListener('mouseout', () => {
                 document.body.style.cursor = 'default';
+            });
+            button.addEventListener('click', (e) => {
+                const submenu = button.nextElementSibling;
+                if (submenu) {
+                    if (submenu.classList.contains('active')) {
+                        submenu.classList.remove('active');
+                        button.querySelector('.arrow-icon').src = '/wb/gallery/symbols/right-arrow-point.svg';
+                    } else {
+                        submenu.classList.add('active');
+                        button.querySelector('.arrow-icon').src = '/wb/gallery/symbols/right-arrow-alt.svg';
+                    }
+                }
             });
         });
     </script>
