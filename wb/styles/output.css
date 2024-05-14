@@ -575,6 +575,14 @@ video {
   margin-right: 0.75rem;
 }
 
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.mb-0\.5 {
+  margin-bottom: 0.125rem;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -753,6 +761,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -851,6 +864,7 @@ body{
   -webkit-backdrop-filter: saturate(100%) blur(150px);
   backdrop-filter: saturate(100%) blur(150px);
   background-color: rgba(0, 0, 0, 0.076);
+  background-image: url(/wb/web/noise.webp);
   border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
 }
 
