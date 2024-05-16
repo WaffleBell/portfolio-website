@@ -52,30 +52,30 @@
     border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
 }
 
-.panel-left{
-    height: 50vh;
-}
-.panel-right{
-    height: 50vh;
-    border-left: none;
+.panel-left {
+    height: 15dvh;
 }
 
-@media (min-width: 768px){
-    .panel-left {
-        height: 20vh;
+.panel-right {
+    height: 75dvh;
+}
+
+@media (max-height: 1300px){
+    .panel-left{
+        height: 50dvh;
     }
-
-    .panel-right {
-        height: 80vh;
+    .panel-right{
+        height: 50dvh;
+        border-left: none;
     }
 }
 
 @media (min-width: 1024px) {
     .panel-left {
-        height: 100vh;
+        height: 100dvh;
     }
     .panel-right {
-        height: 100vh;
+        height: 100dvh;
         border-left: 0.3px solid rgba(255, 255, 255, 0.364);
     }
 }
