@@ -95,15 +95,26 @@
         }
     </style>
 </head>
-<body class="flex flex-col h-screen">
-    <nav class="navbar fixed top-0 w-full flex items-center justify-between p-5 text-white bg-gray-800">
-        <div class="text-2xl font-thin"><a href="/">wafflebell</a></div>
-        <div class="flex space-x-8">
-            <a href="/gallery.html" class="hover:underline font-thin sidebar-button">gallery</a>
-            <a href="#" class="hover:underline font-thin sidebar-button">about me</a>
-            <a href="#" class="hover:underline font-thin sidebar-button">contact</a>
+<body class="flex flex-col h-screen bg-black text-white">
+    <nav id="navbar" class="navbar fixed top-0 w-full flex items-center justify-between p-5"> 
+        <div class="text-2xl font-thin">wafflebell</div>
+        <div class="hidden md:flex space-x-8">
+            <a href="/gallery.html" class="hover:underline font-thin">gallery</a>
+            <a href="#" class="hover:underline font-thin">about me</a>
+            <a href="#" class="hover:underline font-thin">contact</a>
+        </div>
+        <div class="md:hidden">
+            <button id="burger-menu" class="block text-white focus:outline-none">
+                <img id="burger-icon" src="/wb/nav/burger.svg">
+            </button>
         </div>
     </nav>
+    <div id="mobile-menu" class="hidden md:hidden tex-white font-thin">
+        <a href="/gallery.html" class="block py-2 px-4">Gallery</a>
+        <a href="#" class="block py-2 px-4">About Me</a>
+        <a href="#" class="block py-2 px-4">Contact</a>
+    </div>
+    <script src="/wb/scripts/nav.js"></script>
     <div class="flex flex-1">
         <div class="panel-left-gallery flex justify-center items-center bg-black text-white">
             <div class="text-center">

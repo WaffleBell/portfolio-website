@@ -43,38 +43,59 @@
     opacity: 1 !important;
 }
 
-body{
-    font-family: ;
-}
-
 .navbar {
     z-index: 1;
     -webkit-backdrop-filter: saturate(100%) blur(150px);
     backdrop-filter: saturate(100%) blur(150px);
     background-color: rgba(0, 0, 0, 0.076);
-    background-image: url(/wb/web/noise.webp);
+    background-image: url(/wb/nav/noise.webp);
     border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
 }
-.panel-left {
-    height: 100vh;
+
+.panel-left{
+    height: 50vh;
 }
-.panel-right {
-    height: 100vh;
-    border-left: 0.3px solid rgba(255, 255, 255, 0.364);
+.panel-right{
+    height: 50vh;
+    border-left: none;
 }
+
+@media (min-width: 768px){
+    .panel-left {
+        height: 20vh;
+    }
+
+    .panel-right {
+        height: 80vh;
+    }
+}
+
+@media (min-width: 1024px) {
+    .panel-left {
+        height: 100vh;
+    }
+    .panel-right {
+        height: 100vh;
+        border-left: 0.3px solid rgba(255, 255, 255, 0.364);
+    }
+}
+
 .center-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
 }
-.border-bottom{
+
+.border-bottom {
     border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
 }
+
 .panel-left-gallery {
     border-right: 0.3px solid rgba(255, 255, 255, 0.364);
     flex: 3;
 }
+
 .panel-right-gallery {
     flex: 1;
 }
@@ -87,7 +108,7 @@ body{
     height: 40px;
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    z-index: 1; /* Ensure the buttons are above the image */
+    z-index: 1;
 }
 
 .gallery-controls.left {
@@ -104,4 +125,18 @@ body{
     margin: auto;
     display: block;
     transform: translateY(-50%);
+}
+
+#mobile-menu {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    background-color: #000;
+    border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
+    z-index: 1000;
+    width: 100%;
+}
+
+.navbar.black-bg {
+    background-color: #000;
 }

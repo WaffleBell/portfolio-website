@@ -25,39 +25,50 @@
     <link rel="stylesheet" href="/wb/styles/output.css">
 </head>
 <body class="bg-black text-white flex flex-col items-center justify-center min-h-screen">
-    <nav class="navbar fixed top-0 w-full flex items-center justify-between p-5"> 
+    <nav id="navbar" class="navbar fixed top-0 w-full flex items-center justify-between p-5"> 
         <div class="text-2xl font-thin">wafflebell</div>
-        <div class="flex space-x-8">
+        <div class="hidden md:flex space-x-8">
             <a href="/gallery.html" class="hover:underline font-thin">gallery</a>
             <a href="#" class="hover:underline font-thin">about me</a>
             <a href="#" class="hover:underline font-thin">contact</a>
         </div>
+        <div class="md:hidden">
+            <button id="burger-menu" class="block text-white focus:outline-none">
+                <img id="burger-icon" src="/wb/nav/burger.svg">
+            </button>
+        </div>
     </nav>
-    <div class="flex w-full h-full">
-        <div class="panel-left p-16">
+    <div id="mobile-menu" class="hidden md:hidden tex-white font-thin">
+        <a href="/gallery.html" class="block py-2 px-4">Gallery</a>
+        <a href="#" class="block py-2 px-4">About Me</a>
+        <a href="#" class="block py-2 px-4">Contact</a>
+    </div>
+    <script src="/wb/scripts/nav.js"></script>    
+    <div class="flex flex-col-reverse lg:flex-row w-full h-screen lg:h-auto">
+        <div class="panel-left p-8 lg:p-16 lg:w-1/3 flex-1 lg:flex-none">
             <div class="center-content">
-                <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                <h1 class="text-white text-4xl md:text-4xl lg:text-5xl font-bold mb-3">
                     <span id="titleSegment1" class="fade-in font-thin">Hey,</span><br>
                     <span id="titleSegment2" class="fade-in font-display" style="animation-delay: 1s;"> I'm WaffleBell!</span>
                 </h1>
-                <p class="text-gray-400 text-base md:text-lg lg:text-xl fade-in font-thin" id="description" style="animation-delay: 1.5s;">
+                <p class="text-white text-base md:text-sm lg:text-xl fade-in font-thin" id="description" style="animation-delay: 1.5s;">
                     My name is Prab, also known as WaffleBell. I do photography and a occasionaly a bit of videography, you can view my videos at <a href="https://www.youtube.com/@WaffleTM420">YouTube</a>. My photography will be posted here too. Feel free to contact me via email or Discord.
                 </p>
-                <div class="flex flex-col mt-4 sm:flex-row">
-                    <button class="h-10 px-5 text-gray-400 -700 transition-colors duration-200 border border-gray-500 rounded-lg focus:shadow-outline hover:bg-white hover:text-black py-2 mb-2 mr-4 md:mb-0 md:mr-4 fade-in font-thin" style="animation-delay: 3s;">
+                <div class="flex flex-col mt-3 md:flex-row">
+                    <button class="h-10 px-5 text-gray-400 transition-colors duration-200 border border-gray-500 rounded-lg focus:shadow-outline hover:bg-white hover:text-black py-2 mb-2 mr-2 md:mb-0 md:mr-2 fade-in font-thin" style="animation-delay: 3s;">
                         <a href="https://www.youtube.com/@WaffleTM420">Subscribe</a>
                     </button>
-                    <button class="h-10 px-5 text-gray-400 -700 transition-colors duration-200 border border-gray-500 rounded-lg focus:shadow-outline hover:bg-white hover:text-black py-2 mb-2 mr-4 md:mb-0 md:mr-4 fade-in font-thin" style="animation-delay: 3s;">
-                        <a href="https://discord.gg/qS9fsQ6hyP">Join our Discord</a>
+                    <button class="h-10 px-5 text-gray-400 transition-colors duration-200 border border-gray-500 rounded-lg focus:shadow-outline hover:bg-white hover:text-black py-2 mb-2 mr-2 md:mb-0 md:mr-2 fade-in font-thin" style="animation-delay: 3s;">
+                        <a href="https://discord.gg/qS9fsQ6hyP">Join the Discord</a>
                     </button>
                 </div>        
             </div>
         </div>
-        <div class="panel-right">
+        <div class="panel-right lg:w-2/3 flex-1 lg:flex-none">
             <img id="galleryImage" alt="Gallery Image" class="w-full h-full object-cover fade">
         </div>
-        <script src="/wb/scripts/previewgallery.js"></script>
     </div>
+    <script src="/wb/scripts/previewgallery.js"></script>
     <script src="/wb/scripts/fade.js"></script>
 </body>
 </html>
