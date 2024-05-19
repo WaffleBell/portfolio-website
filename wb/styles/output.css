@@ -822,15 +822,17 @@ video {
 @font-face {
   font-family: 'Helvetica Neue Thin';
 
-  src: url(/wb/fonts/thin.otf);
+  src: url(/wb/fonts/thin/thin.woff) format("woff"),
+         url(/wb/fonts/thin/thin.woff2) format("woff2");
 
-  weight: light;
+  weight: thin;
 }
 
 @font-face {
   font-family: 'Helvetica Neue Light';
 
-  src: url(/wb/fonts/light.otf);
+  src: url(/wb/fonts/light/light.woff) format("woff"),
+         url(/wb/fonts/light/light.woff2) format("woff2");
 
   weight: light;
 }
@@ -838,7 +840,8 @@ video {
 @font-face {
   font-family: 'Helvetica Neue Medium';
 
-  src: url(/wb/fonts/medium.otf);
+  src: url(/wb/fonts/medium/medium.woff) format("woff"),
+         url(/wb/fonts/medium/medium.woff2) format("woff2");
 
   weight: medium;
 }
