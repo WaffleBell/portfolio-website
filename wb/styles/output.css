@@ -639,8 +639,16 @@ video {
   height: 100vh;
 }
 
+.h-dvh {
+  height: 100dvh;
+}
+
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-dvh {
+  min-height: 100dvh;
 }
 
 .w-full {
@@ -784,6 +792,10 @@ video {
 
 .font-thin {
   font-weight: 100;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 
 .text-gray-400 {
@@ -1024,6 +1036,10 @@ video {
 @media (min-width: 1024px) {
   .lg\:h-auto {
     height: auto;
+  }
+
+  .lg\:h-dvh {
+    height: 100dvh;
   }
 
   .lg\:w-1\/3 {
