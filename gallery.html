@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000">
     <meta name="Description" content="Welcome to my portfolio, this website serves to showcase samples of my photography and display my past and present projects. Photos will be posted frequently (around 3-4 weeks) for you to view.">
     <meta property="og:image" content="/wb/web/opengraph.png">
@@ -12,7 +12,6 @@
     <meta property="og:url" content="https://wafflebell.github.io/portfolio-website">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="WaffleBell's Portfolio">
-    <meta property="og:type" content="website">
     <meta name="twitter:title" content="WaffleBell's Portfolio">
     <meta name="twitter:image" content="/wb/web/opengraph.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -23,81 +22,10 @@
     <link rel="apple-touch-icon" href="/wb/web/apple.png">
     <link rel="manifest" href="/wb/web/manifest.json">
     <link rel="stylesheet" href="/wb/styles/output.css">
-    <style>
-        .panel-left-gallery {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .gallery-image.fade-in {
-            opacity: 1;
-        }
-
-        .gallery-controls {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 40px;
-            cursor: pointer;
-        }
-
-        .gallery-controls.left {
-            left: 0;
-            background-color: transparent;
-        }
-
-        .gallery-controls.right {
-            right: 0;
-            background-color: transparent;
-        }
-
-        .gallery-controls img {
-            width: 15px;
-            height: 15px;
-            margin: auto;
-            display: block;
-            transform: translateY(-50%);
-        }
-
-        .sidebar-button {
-            cursor: pointer;
-        }
-
-        .folder-submenu {
-            display: none;
-            padding-left: 20px;
-        }
-
-        .folder-submenu.active {
-            display: block;
-        }
-
-        .folder-submenu .sidebar-button {
-            margin-bottom: 5px;
-        }
-
-        .arrow-icon {
-            width: 10px;
-            height: 10px;
-            margin-right: 5px;
-        }
-    </style>
 </head>
-<body class="flex flex-col h-screen bg-black text-white">
+<body class="flex flex-col h-dvh bg-black text-white">
     <nav id="navbar" class="navbar fixed top-0 w-full flex items-center justify-between p-5"> 
-        <div class="text-2xl font-thin">wafflebell</div>
+        <div class="text-2xl font-thin"><a href="/">wafflebell</a></div>
         <div class="hidden md:flex space-x-8">
             <a href="/gallery.html" class="hover:underline font-thin">gallery</a>
             <a href="#" class="hover:underline font-thin">about me</a>
@@ -115,7 +43,7 @@
         <a href="#" class="block py-2 px-4">Contact</a>
     </div>
     <script src="/wb/scripts/nav.js"></script>
-    <div class="flex flex-1">
+    <div class="flex flex-col md:flex-row flex-1">
         <div class="panel-left-gallery flex justify-center items-center bg-black text-white">
             <div class="text-center">
                 <h1 class="text-4xl font-display">The Gallery</h1>
@@ -128,11 +56,10 @@
                 <img src="/wb/gallery/symbols/right-arrow.svg" alt="Next">
             </div>
         </div>
-        <div class="panel-right-gallery flex flex-col justify-between bg-black text-white font-thin">
-            <div class="mt-12 text-lg">
-                <br>
-                <ul>
-                    <div class="location-container border-bottom mb-1">
+        <div class="panel-right-gallery flex flex-col justify-between bg-black text-white font-thin border-top md:mt-16 md:w-1/3">
+            <div class="relative">
+                <ul id="gallery-list" class="hidden md:block">
+                    <div class="location-container border-bottom mt-1 md:mt-3 mb-1">
                         <li class="mx-3 location sidebar-button" data-location="Italy">Italy</li>
                     </div>
                     <div class="location-container border-bottom border-white mb-1">
@@ -167,6 +94,10 @@
                         </ul>
                     </div>
                 </ul>
+                <button id="toggle-list" class="flex items-center justify-between w-full mt-1 py-4 px-3 border-bottom focus:outline-none md:hidden">
+                    <span id="selected-gallery" class="text-lg">Select a Gallery</span>
+                    <img id="list-icon" src="/wb/nav/burger.svg">
+                </button>
             </div>
             <div class="mt-4 mb-4 mx-3">
                 <p class="text-xs text-gray-500 font-thin mb-1">All images are copyrighted, contact <a href="mailto:prabholo@icloud.com">prabholo@icloud.com</a> for licensing.</p>
@@ -174,109 +105,6 @@
             </div>
         </div>
     </div>
-    <script>
-        let currentLocationImages = [];
-        let currentIndex = 0;
-        let isFirstLoad = true;
-        const galleryImage = document.createElement('img');
-        galleryImage.classList.add('gallery-image');
-        const panelLeftGallery = document.querySelector('.panel-left-gallery');
-        panelLeftGallery.appendChild(galleryImage);
-
-        const locationContainers = document.querySelectorAll('.location');
-        locationContainers.forEach(location => {
-            location.addEventListener('click', () => {
-                const locationName = location.getAttribute('data-location');
-                loadImages(locationName);
-            });
-        });
-
-        async function loadImages(locationName) {
-            const locationFolder = `/wb/gallery/${locationName}/`;
-            try {
-                const response = await fetch(locationFolder);
-                const data = await response.text();
-                const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(data, 'text/html');
-                const imageLinks = htmlDoc.querySelectorAll('a[href$=".jpeg"]');
-                currentLocationImages = Array.from(imageLinks).map(link => link.href);
-                currentIndex = 0;
-                if (isFirstLoad) {
-                    showImage(currentLocationImages[currentIndex]);
-                    isFirstLoad = false;
-                } else {
-                    galleryImage.src = currentLocationImages[currentIndex];
-                }
-            } catch (error) {
-                console.error('Error loading images:', error);
-            }
-        }
-
-        function showImage(imageSrc) {
-            galleryImage.src = imageSrc;
-            galleryImage.classList.add('fade-in');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentLocationImages.length === 0) {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
-            } else {
-                prevBtn.style.display = 'block';
-                nextBtn.style.display = 'block';
-            }
-        }
-
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-        prevBtn.addEventListener('click', () => {
-            navigateGallery(-1);
-        });
-        nextBtn.addEventListener('click', () => {
-            navigateGallery(1);
-        });
-
-        function navigateGallery(direction) {
-            currentIndex += direction;
-            if (currentIndex < 0) {
-                currentIndex = currentLocationImages.length - 1;
-            } else if (currentIndex >= currentLocationImages.length) {
-                currentIndex = 0;
-            }
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentLocationImages.length === 0) {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
-            } else {
-                prevBtn.style.display = 'block';
-                nextBtn.style.display = 'block';
-            }
-            galleryImage.src = currentLocationImages[currentIndex];
-        }
-
-        const sidebarButtons = document.querySelectorAll('.sidebar-button');
-        sidebarButtons.forEach(button => {
-            button.addEventListener('mouseover', () => {
-                document.body.style.cursor = 'pointer';
-            });
-            button.addEventListener('mouseout', () => {
-                document.body.style.cursor = 'default';
-            });
-            button.addEventListener('click', (e) => {
-                const submenu = button.nextElementSibling;
-                if (submenu) {
-                    if (submenu.classList.contains('active')) {
-                        submenu.classList.remove('active');
-                        button.querySelector('.arrow-icon').src = '/wb/gallery/symbols/right-arrow-point.svg';
-                    } else {
-                        submenu.classList.add('active');
-                        button.querySelector('.arrow-icon').src = '/wb/gallery/symbols/right-arrow-alt.svg';
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="/wb/scripts/gallery.js"></script>
 </body>
 </html>

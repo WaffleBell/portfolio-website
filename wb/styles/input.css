@@ -91,43 +91,11 @@
 }
 
 .border-bottom {
-    border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
+    border-bottom: thin solid rgba(255, 255, 255, 0.196);
 }
 
-.panel-left-gallery {
-    border-right: 0.3px solid rgba(255, 255, 255, 0.364);
-    flex: 3;
-}
-
-.panel-right-gallery {
-    flex: 1;
-}
-
-.gallery-controls {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    z-index: 1;
-}
-
-.gallery-controls.left {
-    left: 0;
-}
-
-.gallery-controls.right {
-    right: 0;
-}
-
-.gallery-controls img {
-    width: 10px;
-    height: 10px;
-    margin: auto;
-    display: block;
-    transform: translateY(-50%);
+.border-top {
+    border-top: thin solid rgba(255, 255, 255, 0.196);
 }
 
 #mobile-menu {
@@ -142,4 +110,110 @@
 
 .navbar.black-bg {
     background-color: #000;
+}
+
+.panel-right-gallery {
+    flex: 1;
+}
+
+.panel-left-gallery {
+    position: relative;
+    overflow: hidden;
+    border-right: thin solid rgba(255, 255, 255, 0.196);
+    flex: 3;
+}
+
+@media (max-width: 768px){
+    .panel-left-gallery {
+        border: none;
+    }
+}
+
+.gallery-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.gallery-image.fade-in {
+    opacity: 1;
+}
+
+.gallery-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+@media (max-width: 768px){
+    .gallery-controls {
+        top: 55%;
+    }
+}
+
+.gallery-controls.left {
+    left: 0;
+    background-color: transparent;
+}
+
+.gallery-controls.right {
+    right: 0;
+    background-color: transparent;
+}
+
+.gallery-controls img {
+    width: 15px;
+    height: 15px;
+    margin: auto;
+    display: block;
+    transform: translateY(-50%);
+}
+
+.folder-submenu {
+    display: none;
+    padding-left: 20px;
+}
+
+.folder-submenu.active {
+    display: block;
+}
+
+.folder-submenu .sidebar-button {
+    margin-bottom: 5px;
+}
+
+.arrow-icon {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .panel-left-gallery {
+        position: relative;
+    }
+
+    #gallery-list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #000;
+        border-top: thin solid rgba(255, 255, 255, 0.196);
+        width: 100%;
+        z-index: 1;
+        transform: translateY(-100%);
+    }
+
+    #gallery-list.active {
+        transform: translateY(0);
+    }
 }
