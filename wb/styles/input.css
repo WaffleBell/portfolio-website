@@ -126,6 +126,7 @@
 @media (max-width: 768px){
     .panel-left-gallery {
         border: none;
+        flex: 9;
     }
 }
 

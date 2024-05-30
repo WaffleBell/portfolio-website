@@ -23,7 +23,7 @@
     <link rel="manifest" href="/wb/web/manifest.json">
     <link rel="stylesheet" href="/wb/styles/output.css">
 </head>
-<body class="flex flex-col h-dvh bg-black text-white">
+<body class="flex flex-col h-dvh bg-black text-white overflow-hidden">
     <nav id="navbar" class="navbar fixed top-0 w-full flex items-center justify-between p-5"> 
         <div class="text-2xl font-thin"><a href="/">wafflebell</a></div>
         <div class="hidden md:flex space-x-8">
@@ -56,7 +56,7 @@
                 <img src="/wb/gallery/symbols/right-arrow.svg" alt="Next">
             </div>
         </div>
-        <div class="panel-right-gallery flex flex-col justify-between bg-black text-white font-thin border-top md:mt-16 md:w-1/3">
+        <div class="panel-right-gallery flex flex-col justify-end md:justify-between bg-black text-white font-thin md:mt-16 md:w-1/3">
             <div class="relative">
                 <ul id="gallery-list" class="hidden md:block">
                     <div class="location-container border-bottom mt-1 md:mt-3 mb-1">

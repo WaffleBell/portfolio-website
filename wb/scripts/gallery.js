@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentIndex = 0;
     let isFirstLoad = true;
     const galleryImage = document.createElement('img');
-    galleryImage.classList.add('gallery-image');
+    galleryImage.classList.add('gallery-image', 'lazy');
+    galleryImage.loading = 'lazy';
     const panelLeftGallery = document.querySelector('.panel-left-gallery');
     panelLeftGallery.appendChild(galleryImage);
 
@@ -20,7 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const galleryList = document.getElementById('gallery-list');
         const listIcon = document.getElementById('list-icon');
         galleryList.classList.toggle('hidden');
-        listIcon.src = galleryList.classList.contains('hidden') ? '/wb/nav/burger.svg' : '/wb/nav/burger-close.svg';
+        listIcon.src = galleryList.classList.contains('hidden')
+            ? '/wb/nav/burger.svg' 
+            : '/wb/nav/burger-close.svg';
     });
 
     async function loadImages(locationName) {
@@ -33,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const imageLinks = htmlDoc.querySelectorAll('a[href$=".jpeg"]');
             currentLocationImages = Array.from(imageLinks).map(link => link.href);
             currentIndex = 0;
-            isFirstLoad ? showImage(currentLocationImages[currentIndex]) : galleryImage.src = currentLocationImages[currentIndex];
+            showImage(currentLocationImages[currentIndex]);
             isFirstLoad = false;
             preloadImages(currentLocationImages);
         } catch (error) {
@@ -51,9 +54,16 @@ document.addEventListener("DOMContentLoaded", function() {
     function showImage(imageSrc) {
         galleryImage.src = imageSrc;
         galleryImage.classList.add('fade-in');
+        galleryImage.onload = () => adjustImageFit(galleryImage);
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         [prevBtn, nextBtn].forEach(btn => btn.style.display = currentLocationImages.length === 0 ? 'none' : 'block');
+    }
+
+    function adjustImageFit(img) {
+        const isVertical = img.naturalHeight > img.naturalWidth;
+        const isDesktop = window.innerWidth > 768;
+        img.style.objectFit = isVertical && isDesktop ? 'contain' : 'cover';
     }
 
     const prevBtn = document.getElementById('prevBtn');
@@ -64,10 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function navigateGallery(direction) {
         currentIndex = (currentIndex + direction + currentLocationImages.length) % currentLocationImages.length;
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        [prevBtn, nextBtn].forEach(btn => btn.style.display = currentLocationImages.length === 0 ? 'none' : 'block');
-        galleryImage.src = currentLocationImages[currentIndex];
+        showImage(currentLocationImages[currentIndex]);
     }
 
     const sidebarButtons = document.querySelectorAll('.sidebar-button');
@@ -102,5 +109,9 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (distance < -swipeThreshold) {
             navigateGallery(1);
         }
+    });
+
+    window.addEventListener('resize', () => {
+        adjustImageFit(galleryImage);
     });
 });
