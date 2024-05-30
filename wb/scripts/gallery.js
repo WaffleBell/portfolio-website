@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentIndex = 0;
     let isFirstLoad = true;
     const galleryImage = document.createElement('img');
-    galleryImage.classList.add('gallery-image', 'lazy');
-    galleryImage.loading = 'lazy';
+    galleryImage.classList.add('gallery-image');
+    galleryImage.loading = 'eager';
     const panelLeftGallery = document.querySelector('.panel-left-gallery');
     panelLeftGallery.appendChild(galleryImage);
 
@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
         location.addEventListener('click', () => {
             const locationName = location.getAttribute('data-location');
             document.getElementById('selected-gallery').innerText = locationName;
-            loadImages(locationName);
+            const progressIndicator = location.querySelector('.loading-progress');
+            loadImages(locationName, progressIndicator);
         });
     });
 
@@ -21,13 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const galleryList = document.getElementById('gallery-list');
         const listIcon = document.getElementById('list-icon');
         galleryList.classList.toggle('hidden');
-        listIcon.src = galleryList.classList.contains('hidden')
-            ? '/wb/nav/burger.svg' 
-            : '/wb/nav/burger-close.svg';
+        listIcon.src = galleryList.classList.contains('hidden') ? '/wb/nav/burger.svg' : '/wb/nav/burger-close.svg';
     });
 
-    async function loadImages(locationName) {
+    async function loadImages(locationName, progressIndicator) {
         const locationFolder = `/wb/gallery/${locationName}/`;
+        progressIndicator.classList.remove('hidden');
         try {
             const response = await fetch(locationFolder);
             const data = await response.text();
@@ -36,19 +36,32 @@ document.addEventListener("DOMContentLoaded", function() {
             const imageLinks = htmlDoc.querySelectorAll('a[href$=".jpeg"]');
             currentLocationImages = Array.from(imageLinks).map(link => link.href);
             currentIndex = 0;
+            await preloadImages(currentLocationImages, progressIndicator);
+            progressIndicator.classList.add('hidden');
             showImage(currentLocationImages[currentIndex]);
             isFirstLoad = false;
-            preloadImages(currentLocationImages);
         } catch (error) {
             console.error('Error loading images:', error);
+            progressIndicator.classList.add('hidden');
         }
     }
 
-    function preloadImages(imageSources) {
-        imageSources.forEach(src => {
-            const img = new Image();
-            img.src = src;
-        });
+    function preloadImages(imageSources, progressIndicator) {
+        let loadedCount = 0;
+        const totalImages = imageSources.length;
+        progressIndicator.textContent = `0/${totalImages}`;
+        return Promise.all(imageSources.map(src => {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = src;
+                img.onload = () => {
+                    loadedCount++;
+                    progressIndicator.textContent = `${loadedCount}/${totalImages}`;
+                    resolve();
+                };
+                img.onerror = reject;
+            });
+        }));
     }
 
     function showImage(imageSrc) {
