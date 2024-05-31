@@ -82,10 +82,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     [prevBtn, nextBtn].forEach(btn => btn.style.display = 'none');
-    prevBtn.addEventListener('click', () => navigateGallery(-1));
-    nextBtn.addEventListener('click', () => navigateGallery(1));
+    prevBtn.addEventListener('click', debounce(() => navigateGallery(-1)));
+    nextBtn.addEventListener('click', debounce(() => navigateGallery(1)));
 
     function navigateGallery(direction) {
+        if (!currentLocationImages.length) return;
         currentIndex = (currentIndex + direction + currentLocationImages.length) % currentLocationImages.length;
         showImage(currentLocationImages[currentIndex]);
     }
@@ -109,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     panelLeftGallery.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
+        endX = startX;
     });
 
     panelLeftGallery.addEventListener('touchmove', (e) => {
@@ -122,9 +124,19 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (distance < -swipeThreshold) {
             navigateGallery(1);
         }
+        endX = startX;
     });
 
     window.addEventListener('resize', () => {
         adjustImageFit(galleryImage);
     });
+
+    function debounce(func, wait = 100) {
+        let timeout;
+        return function(...args) {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    }
 });
