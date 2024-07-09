@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -681,17 +681,16 @@ video {
   overflow: hidden;
 }
 
-.rounded-lg {
-  border-radius: 0.5rem;
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .border {
   border-width: 1px;
 }
 
-.border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
+.border-stroke {
+  border-color: rgba(255, 255, 255, 0.364);
 }
 
 .border-white {
@@ -800,14 +799,8 @@ video {
   font-weight: 100;
 }
 
-.text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
-.text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
+.text-stroke {
+  color: rgba(255, 255, 255, 0.364);
 }
 
 .text-white {
@@ -882,7 +875,7 @@ video {
   backdrop-filter: saturate(100%) blur(150px);
   background-color: rgba(0, 0, 0, 0.076);
   background-image: url(/wb/nav/noise.webp);
-  border-bottom: 0.3px solid rgba(255, 255, 255, 0.364);
+  border-bottom: thin solid rgba(255, 255, 255, 0.364);
 }
 
 .panel-left {
@@ -911,7 +904,7 @@ video {
 
   .panel-right {
     height: 100dvh;
-    border-left: 0.3px solid rgba(255, 255, 255, 0.364);
+    border-left: thin solid rgba(255, 255, 255, 0.196);
   }
 }
 

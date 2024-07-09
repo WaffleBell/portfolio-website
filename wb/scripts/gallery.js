@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const data = await response.text();
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(data, 'text/html');
-            const imageLinks = htmlDoc.querySelectorAll('a[href$=".jpeg"]');
+            const imageLinks = htmlDoc.querySelectorAll('a[href$=".webp"]');
             currentLocationImages = Array.from(imageLinks).map(link => link.href);
             currentIndex = 0;
             await preloadImages(currentLocationImages, progressIndicator);
