@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "/wb/home/images/3.webp",
         "/wb/home/images/4.webp",
         "/wb/home/images/5.webp",
+        "/wb/home/images/6.webp",
+        "/wb/home/images/7.webp",
     ];
 
     let currentIndex = 0;
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     changeImage();
-    const intervalId = setInterval(changeImage, 3500);
+    const intervalId = setInterval(changeImage, 3550);
 
     window.addEventListener("unload", function () {
         clearInterval(intervalId);
